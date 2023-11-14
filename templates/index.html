@@ -15,6 +15,12 @@
             console.log('Received message:', data);
             // Handle the received message as needed
         });
+
+        socket.on('connect_to_server', function(data) {
+            console.log('Connecting to server:', data.server_address);
+            // Add your logic to connect to the specified server address
+            // For example, you can use WebSocket or another method to connect
+        });
     </script>
 </body>
 </html>

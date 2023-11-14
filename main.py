@@ -1,16 +1,14 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
 @socketio.on('connect')
 def handle_connect():
     print('Client connected')
+    # Connect to 10.23.5.34:9999 when a client connects
+    emit('connect_to_server', {'server_address': '10.23.5.34:9999'})
 
 @socketio.on('disconnect')
 def handle_disconnect():
